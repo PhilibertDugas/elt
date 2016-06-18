@@ -1,3 +1,3 @@
-defmodule GithubStatus.LayoutViewTest do
-  use GithubStatus.ConnCase, async: true
+defmodule Elt.LayoutViewTest do
+  use Elt.ConnCase, async: true
 end

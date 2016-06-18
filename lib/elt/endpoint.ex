@@ -1,14 +1,14 @@
-defmodule GithubStatus.Endpoint do
-  use Phoenix.Endpoint, otp_app: :github_status
+defmodule Elt.Endpoint do
+  use Phoenix.Endpoint, otp_app: :elt
 
-  socket "/socket", GithubStatus.UserSocket
+  socket "/socket", Elt.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :github_status, gzip: false,
+    at: "/", from: :elt, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -35,8 +35,8 @@ defmodule GithubStatus.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_github_status_key",
-    signing_salt: "g0w2khao"
+    key: "_elt_key",
+    signing_salt: "NpxN2b51"
 
-  plug GithubStatus.Router
+  plug Elt.Router
 end

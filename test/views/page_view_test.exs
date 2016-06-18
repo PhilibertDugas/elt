@@ -1,3 +1,3 @@
-defmodule GithubStatus.PageViewTest do
-  use GithubStatus.ConnCase, async: true
+defmodule Elt.PageViewTest do
+  use Elt.ConnCase, async: true
 end

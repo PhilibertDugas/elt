@@ -1,4 +1,4 @@
-# GithubStatus
+# Elt
 
 To start your Phoenix app:
 

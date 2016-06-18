@@ -1,5 +1,5 @@
-defmodule GithubStatus.PageControllerTest do
-  use GithubStatus.ConnCase
+defmodule Elt.PageControllerTest do
+  use Elt.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

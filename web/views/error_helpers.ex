@@ -1,4 +1,4 @@
-defmodule GithubStatus.ErrorHelpers do
+defmodule Elt.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule GithubStatus.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(GithubStatus.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Elt.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(GithubStatus.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Elt.Gettext, "errors", msg, opts)
     end
   end
 end

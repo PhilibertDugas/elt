@@ -1,12 +1,12 @@
-defmodule GithubStatus.Web do
+defmodule Elt.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use GithubStatus.Web, :controller
-      use GithubStatus.Web, :view
+      use Elt.Web, :controller
+      use Elt.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule GithubStatus.Web do
     quote do
       use Phoenix.Controller
 
-      alias GithubStatus.Repo
+      alias Elt.Repo
       import Ecto
       import Ecto.Query
 
-      import GithubStatus.Router.Helpers
-      import GithubStatus.Gettext
+      import Elt.Router.Helpers
+      import Elt.Gettext
     end
   end
 
@@ -49,9 +49,9 @@ defmodule GithubStatus.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import GithubStatus.Router.Helpers
-      import GithubStatus.ErrorHelpers
-      import GithubStatus.Gettext
+      import Elt.Router.Helpers
+      import Elt.ErrorHelpers
+      import Elt.Gettext
     end
   end
 
@@ -65,10 +65,10 @@ defmodule GithubStatus.Web do
     quote do
       use Phoenix.Channel
 
-      alias GithubStatus.Repo
+      alias Elt.Repo
       import Ecto
       import Ecto.Query
-      import GithubStatus.Gettext
+      import Elt.Gettext
     end
   end
 

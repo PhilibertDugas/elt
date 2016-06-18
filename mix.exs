@@ -1,8 +1,8 @@
-defmodule GithubStatus.Mixfile do
+defmodule Elt.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :github_status,
+    [app: :elt,
      version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule GithubStatus.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {GithubStatus, []},
+    [mod: {Elt, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex]]
   end

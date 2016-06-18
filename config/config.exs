@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :github_status,
-  ecto_repos: [GithubStatus.Repo]
+config :elt,
+  ecto_repos: [Elt.Repo]
 
 # Configures the endpoint
-config :github_status, GithubStatus.Endpoint,
+config :elt, Elt.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "F+Ap5NWHSq10BrA8deyxhpj3O4SbV+NMVGXe64NoRg3cdPB2xipRZWfb6zSyegN5",
-  render_errors: [view: GithubStatus.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: GithubStatus.PubSub,
+  secret_key_base: "to/WUgvMmfQRBJ2hH8OIu9dRDl0umnfnMe4o+eJ0nEdP2565qD+iYzLi3vuZxrxg",
+  render_errors: [view: Elt.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Elt.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

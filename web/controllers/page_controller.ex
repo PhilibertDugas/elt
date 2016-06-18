@@ -1,5 +1,5 @@
-defmodule GithubStatus.PageController do
-  use GithubStatus.Web, :controller
+defmodule Elt.PageController do
+  use Elt.Web, :controller
 
   def index(conn, _params) do
     render conn, "index.html"

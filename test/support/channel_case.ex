@@ -1,4 +1,4 @@
-defmodule GithubStatus.ChannelCase do
+defmodule Elt.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -20,22 +20,22 @@ defmodule GithubStatus.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias GithubStatus.Repo
+      alias Elt.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
 
       # The default endpoint for testing
-      @endpoint GithubStatus.Endpoint
+      @endpoint Elt.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(GithubStatus.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Elt.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(GithubStatus.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Elt.Repo, {:shared, self()})
     end
 
     :ok

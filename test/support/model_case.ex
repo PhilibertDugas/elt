@@ -1,4 +1,4 @@
-defmodule GithubStatus.ModelCase do
+defmodule Elt.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -16,20 +16,20 @@ defmodule GithubStatus.ModelCase do
 
   using do
     quote do
-      alias GithubStatus.Repo
+      alias Elt.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import GithubStatus.ModelCase
+      import Elt.ModelCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(GithubStatus.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Elt.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(GithubStatus.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Elt.Repo, {:shared, self()})
     end
 
     :ok
@@ -59,7 +59,7 @@ defmodule GithubStatus.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&GithubStatus.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&Elt.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

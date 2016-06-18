@@ -1,5 +1,5 @@
-defmodule GithubStatus.Router do
-  use GithubStatus.Web, :router
+defmodule Elt.Router do
+  use Elt.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,14 +13,16 @@ defmodule GithubStatus.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", GithubStatus do
+  scope "/", Elt do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/hello", HelloController, :index
+    get "/hello/:messenger", HelloController, :show
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", GithubStatus do
+  # scope "/api", Elt do
   #   pipe_through :api
   # end
 end

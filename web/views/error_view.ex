@@ -1,5 +1,5 @@
-defmodule GithubStatus.ErrorView do
-  use GithubStatus.Web, :view
+defmodule Elt.ErrorView do
+  use Elt.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

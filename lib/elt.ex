@@ -1,4 +1,4 @@
-defmodule GithubStatus do
+defmodule Elt do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -9,23 +9,23 @@ defmodule GithubStatus do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(GithubStatus.Repo, []),
+      supervisor(Elt.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(GithubStatus.Endpoint, []),
-      # Start your own worker by calling: GithubStatus.Worker.start_link(arg1, arg2, arg3)
-      # worker(GithubStatus.Worker, [arg1, arg2, arg3]),
+      supervisor(Elt.Endpoint, []),
+      # Start your own worker by calling: Elt.Worker.start_link(arg1, arg2, arg3)
+      # worker(Elt.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: GithubStatus.Supervisor]
+    opts = [strategy: :one_for_one, name: Elt.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    GithubStatus.Endpoint.config_change(changed, removed)
+    Elt.Endpoint.config_change(changed, removed)
     :ok
   end
 end

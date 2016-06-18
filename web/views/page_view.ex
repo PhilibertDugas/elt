@@ -1,3 +1,3 @@
-defmodule GithubStatus.PageView do
-  use GithubStatus.Web, :view
+defmodule Elt.PageView do
+  use Elt.Web, :view
 end
