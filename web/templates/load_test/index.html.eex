@@ -1,0 +1,32 @@
+<h2>Listing load tests</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Amount of requests</th>
+      <th>Successful requests</th>
+      <th>Average request time</th>
+      <th>Plan</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for load_test <- @load_tests do %>
+    <tr>
+      <td><%= load_test.amount_of_requests %></td>
+      <td><%= load_test.successful_requests %></td>
+      <td><%= load_test.average_request_time %></td>
+      <td><%= load_test.plan %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: load_test_path(@conn, :show, load_test), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: load_test_path(@conn, :edit, load_test), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: load_test_path(@conn, :delete, load_test), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New load test", to: load_test_path(@conn, :new) %>

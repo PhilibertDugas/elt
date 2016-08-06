@@ -1,0 +1,27 @@
+{
+  "elt": [
+    {
+      "threads": 10,
+      "repetitions": 10,
+      "requests":
+        {
+          "url": "http://philibertd.com",
+          "method": "GET",
+          "assert": {
+            "status_code": 200
+          }
+        }
+    },
+    {
+      "threads": 5,
+      "repetitions": 10,
+      "requests": {
+        "url": "http://google.com",
+        "method": "GET",
+        "assert": {
+          "status_code": 200
+        }
+      }
+    }
+  ]
+}

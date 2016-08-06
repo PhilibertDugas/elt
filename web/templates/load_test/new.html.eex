@@ -1,0 +1,6 @@
+<h2>New load test</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: load_test_path(@conn, :create) %>
+
+<%= link "Back", to: load_test_path(@conn, :index) %>

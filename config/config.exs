@@ -12,7 +12,7 @@ config :elt,
 # Configures the endpoint
 config :elt, Elt.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "to/WUgvMmfQRBJ2hH8OIu9dRDl0umnfnMe4o+eJ0nEdP2565qD+iYzLi3vuZxrxg",
+  secret_key_base: "sCpnUZglgb0S6tfx63B3Faqi5ZmO2cgUHlFcU5vajFuR8KwutrwUYyd2tLOGZX8s",
   render_errors: [view: Elt.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Elt.PubSub,
            adapter: Phoenix.PubSub.PG2]

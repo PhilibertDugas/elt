@@ -36,7 +36,7 @@ defmodule Elt.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_elt_key",
-    signing_salt: "NpxN2b51"
+    signing_salt: "eWyfOWbU"
 
   plug Elt.Router
 end
