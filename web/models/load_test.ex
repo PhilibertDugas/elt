@@ -24,7 +24,7 @@ defmodule Elt.LoadTest do
   end
 
   def count_successes(result) do
-    Enum.map(result, fn(x) -> elem(x, 0) == "true" end) |> length
+    Enum.filter(result, fn(x) -> elem(x, 0) == true end) |> length
   end
 
   def count_average_request_time(result) do

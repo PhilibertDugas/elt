@@ -11,6 +11,6 @@ defmodule HTTPSender do
     milliseconds_time = time / 1000
     success = assert["status_code"] == status_code
     Logger.info("Request: #{url}, Status Code: #{status_code}, Success: #{success}, Time: #{milliseconds_time}ms")
-    List.Bucket.put({"#{success}", milliseconds_time})
+    List.Bucket.put({success, milliseconds_time})
   end
 end
