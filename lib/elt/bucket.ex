@@ -12,6 +12,6 @@ defmodule List.Bucket do
   end
 
   def clean do
-    Agent.update(__MODULE__, fn state -> [] end)
+    Agent.update(__MODULE__, fn _state -> [] end)
   end
 end
