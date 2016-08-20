@@ -1,6 +1,8 @@
 <h2>New load test</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: load_test_path(@conn, :create) %>
+<%= form_for @changeset, load_test_path(@conn, :create), fn f -> %>
+  <%= textarea(f, :plan) %><br/>
+  <%= submit "Submit" %>
+<% end %>
 
 <%= link "Back", to: load_test_path(@conn, :index) %>

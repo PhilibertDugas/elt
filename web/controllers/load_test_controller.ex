@@ -13,8 +13,8 @@ defmodule Elt.LoadTestController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"load_test" => _load_test_params}) do
-    Runner.main
+  def create(conn, %{"load_test" => load_test_params}) do
+    Runner.main(load_test_params["plan"])
     result = List.Bucket.get_all
     List.Bucket.clean
     requests = LoadTest.count_requests(result)

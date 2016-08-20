@@ -1,13 +1,12 @@
 defmodule Runner do
-  def main do
+  def main(plan) do
     List.Bucket.start_link
-    struct = get_struct
+    struct = get_struct(plan)
     launch_thread_groups(struct.elt, [])
   end
 
-  defp get_struct do
-    {:ok, content} = Parser.read_test
-    Poison.decode!(content, as: %LoadTest{})
+  defp get_struct(plan) do
+    Poison.decode!(plan, as: %LoadTest{})
   end
 
   defp launch_thread_groups([head | tail], tasks) do

@@ -1,7 +1,6 @@
 <h2>Show load test</h2>
 
 <ul>
-
   <li>
     <strong>Amount of requests:</strong>
     <%= @load_test.amount_of_requests %>
@@ -21,7 +20,6 @@
     <strong>Plan:</strong>
     <%= @load_test.plan %>
   </li>
-
 </ul>
 
 <%= link "Edit", to: load_test_path(@conn, :edit, @load_test) %>
