@@ -18,6 +18,7 @@ defmodule Elt.Router do
 
     get "/", PageController, :index
     resources "/load_tests", LoadTestController
+    get "/load_tests/:id/progress", LoadTestController, :progress
   end
 
   # Other scopes may use custom stacks.

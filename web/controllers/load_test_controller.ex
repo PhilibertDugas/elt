@@ -14,7 +14,23 @@ defmodule Elt.LoadTestController do
   end
 
   def create(conn, %{"load_test" => load_test_params}) do
-    Runner.main(load_test_params["plan"])
+    {:ok, task} = Task.start(fn -> Runner.main(load_test_params["plan"]) end)
+    Map.Bucket.put("1", task)
+    conn
+      |> redirect(to: load_test_path(conn, :progress, "1"))
+  end
+
+  def progress(conn, %{"id" => id}) do
+    task = Map.Bucket.get("1")
+    case Process.alive?(task) do
+      true ->
+        render(conn, "progress.html", alive: true)
+      false ->
+        insert_result(conn)
+    end
+  end
+
+  defp insert_result(conn) do
     result = List.Bucket.get_all
     List.Bucket.clean
     requests = LoadTest.count_requests(result)

@@ -1,0 +1,10 @@
+<h2>Progress</h2>
+
+<%= if @alive do %>
+  Still running!
+<% else %>
+  Done :)
+<% end %>
+<br/>
+
+<%= link "Back", to: load_test_path(@conn, :index) %>

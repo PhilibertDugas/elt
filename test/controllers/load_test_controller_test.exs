@@ -2,7 +2,7 @@ defmodule Elt.LoadTestControllerTest do
   use Elt.ConnCase
 
   alias Elt.LoadTest
-  @valid_attrs %{amount_of_requests: 42, average_request_time: 42, plan: "some content", successful_requests: 42}
+  @valid_attrs %{plan: File.read("elt-test.json")}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
