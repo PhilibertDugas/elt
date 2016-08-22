@@ -14,7 +14,12 @@ defmodule Elt.LoadTestController do
   end
 
   def create(conn, %{"load_test" => load_test_params}) do
-    {:ok, task} = Task.start(fn -> Runner.main(load_test_params["plan"]) end)
+    {:ok, task} = Task.start(
+     fn ->
+      Runner.main(load_test_params["plan"])
+      insert_result
+     end
+   )
     Map.Bucket.put("1", task)
     conn
       |> redirect(to: load_test_path(conn, :progress, "1"))
@@ -26,11 +31,13 @@ defmodule Elt.LoadTestController do
       true ->
         render(conn, "progress.html", alive: true)
       false ->
-        insert_result(conn)
+        conn
+        |> put_flash(:info, "Load test created successfully.")
+        |> redirect(to: load_test_path(conn, :index))
     end
   end
 
-  defp insert_result(conn) do
+  defp insert_result do
     result = List.Bucket.get_all
     List.Bucket.clean
     requests = LoadTest.count_requests(result)
@@ -40,15 +47,7 @@ defmodule Elt.LoadTestController do
       %LoadTest{},
       %{amount_of_requests: requests, successful_requests: success, average_request_time: average, plan: "test"}
     )
-
-    case Repo.insert(changeset) do
-      {:ok, _load_test} ->
-        conn
-        |> put_flash(:info, "Load test created successfully.")
-        |> redirect(to: load_test_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
+    Repo.insert(changeset)
   end
 
   def show(conn, %{"id" => id}) do
