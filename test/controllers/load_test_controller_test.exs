@@ -2,7 +2,8 @@ defmodule Elt.LoadTestControllerTest do
   use Elt.ConnCase
 
   alias Elt.LoadTest
-  @valid_attrs %{plan: File.read("elt-test.json")}
+  {:ok, plan} = File.read("elt-test.json")
+  @valid_attrs %{plan: plan}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -15,15 +16,16 @@ defmodule Elt.LoadTestControllerTest do
     assert html_response(conn, 200) =~ "New load test"
   end
 
-  test "creates resource and redirects when data is valid", %{conn: conn} do
+  test "launches load test and redirects to progress", %{conn: conn} do
     conn = post conn, load_test_path(conn, :create), load_test: @valid_attrs
-    assert redirected_to(conn) == load_test_path(conn, :index)
-    assert Repo.get_by(LoadTest, @valid_attrs)
+    assert redirected_to(conn) == load_test_path(conn, :progress, "1")
+    task = Map.Bucket.get("1")
+    assert Process.alive?(task)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, load_test_path(conn, :create), load_test: @invalid_attrs
-    assert html_response(conn, 200) =~ "New load test"
+    assert html_response(conn, 400) =~ "Error, wrong parameters"
   end
 
   test "shows chosen resource", %{conn: conn} do
@@ -41,19 +43,6 @@ defmodule Elt.LoadTestControllerTest do
   test "renders form for editing chosen resource", %{conn: conn} do
     load_test = Repo.insert! %LoadTest{}
     conn = get conn, load_test_path(conn, :edit, load_test)
-    assert html_response(conn, 200) =~ "Edit load test"
-  end
-
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    load_test = Repo.insert! %LoadTest{}
-    conn = put conn, load_test_path(conn, :update, load_test), load_test: @valid_attrs
-    assert redirected_to(conn) == load_test_path(conn, :show, load_test)
-    assert Repo.get_by(LoadTest, @valid_attrs)
-  end
-
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    load_test = Repo.insert! %LoadTest{}
-    conn = put conn, load_test_path(conn, :update, load_test), load_test: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit load test"
   end
 

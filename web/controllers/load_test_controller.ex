@@ -13,16 +13,22 @@ defmodule Elt.LoadTestController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"load_test" => load_test_params}) do
+  def create(conn, %{"load_test" => %{ "plan" => plan }}) do
     {:ok, task} = Task.start(
      fn ->
-      Runner.main(load_test_params["plan"])
+      Runner.main(plan)
       insert_result
      end
    )
     Map.Bucket.put("1", task)
     conn
       |> redirect(to: load_test_path(conn, :progress, "1"))
+  end
+
+  def create(conn, _params) do
+    conn
+    |> put_status(400)
+    |> html("Error, wrong parameters")
   end
 
   def progress(conn, %{"id" => id}) do
@@ -59,20 +65,6 @@ defmodule Elt.LoadTestController do
     load_test = Repo.get!(LoadTest, id)
     changeset = LoadTest.changeset(load_test)
     render(conn, "edit.html", load_test: load_test, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "load_test" => load_test_params}) do
-    load_test = Repo.get!(LoadTest, id)
-    changeset = LoadTest.changeset(load_test, load_test_params)
-
-    case Repo.update(changeset) do
-      {:ok, load_test} ->
-        conn
-        |> put_flash(:info, "Load test updated successfully.")
-        |> redirect(to: load_test_path(conn, :show, load_test))
-      {:error, changeset} ->
-        render(conn, "edit.html", load_test: load_test, changeset: changeset)
-    end
   end
 
   def delete(conn, %{"id" => id}) do
